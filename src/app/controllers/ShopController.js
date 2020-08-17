@@ -10,8 +10,8 @@ class ShopController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.String().required(),
-      description: Yup.String(),
+      name: Yup.string().required(),
+      description: Yup.string(),
       lat: Yup.number(),
       long: Yup.number(),
     });
@@ -37,8 +37,8 @@ class ShopController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.String().required(),
-      description: Yup.String(),
+      name: Yup.string().required(),
+      description: Yup.string(),
       lat: Yup.number(),
       long: Yup.number(),
     });
@@ -62,7 +62,9 @@ class ShopController {
       }
     }
 
-    const { description, lat, long } = await Shop.update(req.body);
+    const { description, lat, long } = await Shop.update(req.body, {
+      where: { id },
+    });
 
     return res.json({ id, name, description, lat, long });
   }
