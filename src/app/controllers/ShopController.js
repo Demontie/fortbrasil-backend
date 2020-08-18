@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import Shop from '../models/Shop';
+import { calcDistance } from './utils';
 
 class ShopController {
   async index(req, res) {
@@ -74,6 +75,34 @@ class ShopController {
     const shop = await Shop.findByPk(id);
     await shop.destroy();
     return res.json(shop);
+  }
+
+  async locationShop(req, res) {
+    const { lat, lng } = req.body;
+
+    const shops = await Shop.findAll();
+
+    const shopWithDistance = shops
+      .map((shop) => {
+        const dist = calcDistance(
+          Number(shop.lat),
+          Number(shop.long),
+          Number(lat),
+          Number(lng)
+        );
+        return { shop, distance: dist };
+      })
+      .sort((a, b) => {
+        if (a.distance > b.distance) {
+          return -1;
+        }
+        if (a.distance < b.distance) {
+          return 1;
+        }
+        return 0;
+      });
+
+    return res.json(shopWithDistance);
   }
 }
 

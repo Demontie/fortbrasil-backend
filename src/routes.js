@@ -14,6 +14,7 @@ routes.post('/login', SessionController.store);
 // Tudo que vier depois, irá ter uma validação de autenticação
 routes.use(authMiddleware);
 
+routes.post('/shopLocation', ShopController.locationShop);
 routes.get('/shops', ShopController.index);
 routes.post('/shops', ShopController.store);
 routes.put('/shops/:id', ShopController.update);

@@ -5,7 +5,7 @@ O banco de dados utilizado é o postgresql. Caso utiliza localmente é necessari
 
 ```bash
 # Clonar repositório
-$ git clone https://github.com/Demontie/fortbrasil-backend
+$ git clone https://github.com/Demontie/fortbrasil-backend.git
 
 # Pasta do clone
 $ cd fortbrasil-backend
@@ -33,7 +33,7 @@ $ yarn dev
 
 ```bash
 # Clonar repositório
-$ git clone https://github.com/Demontie/fortbrasil-backend
+$ git clone https://github.com/Demontie/fortbrasil-backend.git
 
 # Pasta do clone
 $ cd fortbrasil-backend
